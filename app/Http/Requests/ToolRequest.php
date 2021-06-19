@@ -27,8 +27,8 @@ class ToolRequest extends FormRequest
             'name' => 'required|string',
             'description' => 'required|string',
             'link' => 'required|string',
-            'tags' => 'required|array'
+            'tags' => 'required|array',
+            'tags.*' => 'required|string|distinct'
         ];
     }
-
 }
