@@ -19,7 +19,9 @@ class ToolRepository extends AbstractRepository
         $query = app(Tool::class)->newQuery();
 
         if ($search['tag']) {
-            // TODO: search tool by tag
+            return Tool::whereHas('tags', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . strtoupper($search['tag']) . '%');
+            })->paginate($perPage ?? 10);
         }
 
         if ($perPage) {
@@ -39,13 +41,15 @@ class ToolRepository extends AbstractRepository
         DB::beginTransaction();
         try {
             $model = ($id) ? $this->find($id) : new Tool();
-
             $model->fill($data->all());
-
             $model->save();
 
+            if ($id) {
+                $model->tags()->detach();
+            }
+
             foreach ($data->tags as $value) {
-                $tag = Tag::where('name', 'LIKE', '%' . $value . '%')->first();
+                $tag = Tag::where('name', 'like', '%' . strtoupper($value) . '%')->first();
                 $model->tags()->attach([$tag->id]);
             }
 
