@@ -1,6 +1,6 @@
 # VUTTR
 
-![https://travis-ci.com/caiodomingues/vuttr-backend.svg?branch=master](https://travis-ci.com/caiodomingues/vuttr-backend.svg?branch=master)
+[![Build Status](https://travis-ci.com/caiodomingues/vuttr-backend.svg?branch=master)](https://travis-ci.com/caiodomingues/vuttr-backend)
 
 [English version](README-en.md)
 
