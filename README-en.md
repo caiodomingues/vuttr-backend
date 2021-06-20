@@ -51,7 +51,7 @@ php artisan serves --port=3000
 
 ## Example
 
-There is a sample application running on Heroku, you can check it out [here](.).
+There is a sample application running on Heroku, you can check it out [here](https://vuttr-domingues.herokuapp.com/). Routes have the prefix `/api`, i.e https://vuttr-domingues.herokuapp.com/api/route.
 
 In addition to the tool control routes, there are also the routes for creating new tags. Every system follows the REST standard, the response can also follow the paging metadata, just use the `per_page` and `page` parameters in the url.
 

@@ -53,7 +53,7 @@ php artisan serve --port=3000
 
 ## Exemplo
 
-Há uma aplicação exemplo rodando no Heroku, você pode conferir por [aqui](.).
+Há uma aplicação exemplo rodando no Heroku, você pode conferir por [aqui](https://vuttr-domingues.herokuapp.com/). As rotas possuem o prefixo `/api`, exemplo: https://vuttr-domingues.herokuapp.com/api/rota.
 
 Além das rotas para controle de ferramentas, há também as rotas para criação de novas tags. Todo sistema segue o padrão REST, a resposta também pode acompanhar os metadados para paginação, basta utilizar os parâmetros `per_page` e `page` na url.
 
