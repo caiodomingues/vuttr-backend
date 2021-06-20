@@ -19,3 +19,8 @@ before_script:
   - php artisan passport:install
 script:
   - vendor/bin/phpunit
+deploy:
+  provider: heroku
+  api_key:
+    secure: $HEROKU_API_KEY
+  app: vuttr-domingues
