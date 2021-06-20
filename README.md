@@ -51,7 +51,9 @@ php artisan serve --port=3000
 
 > O parâmetro `port` é opcional, foi incluído no exemplo acima pois o teste requisita que a API rode na porta 3000. O valor padrão é 8000.
 
-## Exemplo
+## Consumindo a API
+
+[Documentação no API Blueprint](https://caiodomingues.docs.apiary.io/#)
 
 Há uma aplicação exemplo rodando no Heroku, você pode conferir por [aqui](https://vuttr-domingues.herokuapp.com/). As rotas possuem o prefixo `/api`, exemplo: https://vuttr-domingues.herokuapp.com/api/rota.
 
