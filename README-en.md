@@ -1,5 +1,7 @@
 # VUTTR
 
+![https://travis-ci.com/caiodomingues/vuttr-backend.svg?branch=master](https://travis-ci.com/caiodomingues/vuttr-backend.svg?branch=master)
+
 Very Useful Tools to Remember - VUTTR is a testing application. In it, the user must be able to manage everyday tools containing information such as: name, description, link (url) and tags. The API is built using the PHP framework [Laravel 8](https://laravel.com), MySQL, Laravel Passport for authentication control with OAuth2 and JWT. Route tests were performed via [Insomnia](https://insomnia.rest/), and the file for importing the documentation is available in the [docs](docs) folder.
 
 The API is structured around the Repository Pattern, takes into account Laravel's best practices (which are based on PSRs) of naming (both for migrations, as for Models and functions). The database was mounted via _migrations_, but it is still necessary to run the database creation command.

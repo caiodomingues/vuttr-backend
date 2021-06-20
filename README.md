@@ -1,5 +1,7 @@
 # VUTTR
 
+![https://travis-ci.com/caiodomingues/vuttr-backend.svg?branch=master](https://travis-ci.com/caiodomingues/vuttr-backend.svg?branch=master)
+
 [English version](README-en.md)
 
 O Very Useful Tools to Remember - VUTTR, é uma aplicação de testes. Nela o usuário deverá ser capaz de gerenciar ferramentas do dia a dia contendo informações como: nome, descrição, link (url) e tags. A API é construída utilizando o framework PHP [Laravel 8](https://laravel.com), MySQL, Laravel Passport para controle de autenticação com OAuth2 e JWT. Os testes das rotas foram realizados via [Insomnia](https://insomnia.rest/), e o arquivo para importação da documentação está disponível na pasta [docs](docs).
