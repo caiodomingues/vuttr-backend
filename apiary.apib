@@ -1,80 +1,319 @@
 FORMAT: 1A
-HOST: https://polls.apiblueprint.org/
+HOST: https://vuttr-domingues.herokuapp.com/api
 
-# Caio Domingues
+# Very Useful Tools to Remember
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+VUTTR is a simple API allowing consumers to manage tools and categorize them by tags.
 
-## Questions Collection [/questions]
+# Group User
 
-### List All Questions [GET]
+The API provides an OAuth authentication, to access all routes that are not responsible for registering or logging in, you need to be authenticated.
+
+## Auth [/]
+
+The User flow, as well the OAuth with JWT are powered by Laravel Passport. 
+
+### Register [POST /register]
+
++ Request (application/json)
+
+    + Attributes (object)
+        + name: John Doe (string)
+        + email: john@doe.com (string)
+        + password: Supersafepassword123! (string) - Requires at least one uppercase letter, one lowercase letter, one symbol and number. It also verifies if the password wasn't leaked before. Provided by Laravel Passport with Laravel 8.
+        + password_confirmation: Supersafepassword123! (string) - Needs to be equal the password field
+ 
+    + Body
+    
+            {
+                "name": "John Doe",
+                "email": "john@doe.com",
+                "password":"Supersafepassword123!",
+                "password_confirmation":"Supersafepassword123!"
+            }
 
 + Response 200 (application/json)
 
+    + Attributes (object)
+        + user:
+            + id: 1 (number)
+            + name: John Doe (string)
+            + email: john@doe.com (string)
+            + created_at: 2021-06-20T17:12:01.000000Z (string) - ISO 8601
+            + updated_at: 2021-06-20T17:12:01.000000Z (string) - ISO 8601
+        + token: eyJD901JD9201I0K... (string)
+        
+    + Body
+    
+            {
+                "user": {
+                    "name": "John Doe",
+                    "email": "john@doe.com",
+                    "updated_at": "2021-06-20T17:12:01.000000Z",
+                    "created_at": "2021-06-20T17:12:01.000000Z",
+                    "id": 1
+                },
+                "token": "eyJ0eXAiOiJKV1Q..."
+            }
+
+### Login [POST /login]
+
++ Request (application/json)
+
+    + Attributes (object)
+        + email: john@doe.com (string)
+        + password: Supersafepassword123! (string)
+        
+    + Body
+    
+            {
+                "email": "john@doe.com",
+                "password":"Supersafepassword123!",
+            }
+
++ Response 200 (application/json)
+
+    + Attributes (object)
+        + user:
+            + id: 1 (number)
+            + name: John Doe (string)
+            + email: john@doe.com (string)
+            + created_at: 2021-06-20T17:12:01.000000Z (string) - ISO 8601
+            + updated_at: 2021-06-20T17:12:01.000000Z (string) - ISO 8601
+        + token: eyJD901JD9201I0K... (string)
+        
+    + Body
+    
+            {
+                "user": {
+                    "name": "John Doe",
+                    "email": "john@doe.com",
+                    "email_verified_at": null,
+                    "updated_at": "2021-06-20T17:12:01.000000Z",
+                    "created_at": "2021-06-20T17:12:01.000000Z",
+                    "id": 1
+                },
+                "token": "eyJ0eXAiOiJKV1Q..."
+            }
+
+## User [/user]
+
+### Retrieve authenticated user [GET]
+
++ Response 200 (application/json)
+
+    + Attributes (object)
+        + user:
+            + id: 1 (number)
+            + name: John Doe (string)
+            + email: john@doe.com (string)
+            + created_at: 2021-06-20T17:12:01.000000Z (string) - ISO 8601
+            + updated_at: 2021-06-20T17:12:01.000000Z (string) - ISO 8601
+        + token: eyJD901JD9201I0K... (string)
+            
+    + Body
+            {
+                "user": {
+                    "name": "John Doe",
+                    "email": "john@doe.com",
+                    "updated_at": "2021-06-20T17:12:01.000000Z",
+                    "created_at": "2021-06-20T17:12:01.000000Z",
+                    "id": 1
+                },
+                "token": "eyJ0eXAiOiJKV1Q..."
+            }
+
+
+# Group Tags
+
+## Tags [/tags]
+
+### Retrieve all [GET /tags{?per_page,page,name}]
+
++ Parameters
+    + per_page: 10 (number, optional) - The maximum number of results to return.
+    + page: 1 (number, optional) - The number of the page.
+    + name: php (string, optional) - Search tags by name.
+
++ Response 200 (application/json)
+    
         [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
+                "id": 1,
+                "name": "PHP"
+            }
+        ]
+
+### Retrieve by ID [GET /tags/{id}]
+
++ Parameters
+
+    + id: 1 (number) - An unique identifier of the tag
+
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "name": "PHP"
+        }
+        
+### Create [POST]
+
++ Request (application/json)
+
+    + Attributes (object)
+        + name: PHP (string)
+        
+    + Body
+    
+        {
+            "name": "Laravel",
+        }
+
++ Response 201 (application/json)
+
+        {
+            "id": 2,
+            "name": "Laravel"
+        }
+
+### Update [PUT /tags/{id}]
+
++ Parameters
+
+    + id: 1 (number) - An unique identifier of the tag
+
++ Request (application/json)
+
+    + Attributes (object)
+        + name: PHP7.3 (string)
+    
+    + Body
+    
+        {
+            "name": "PHP7.3",
+        }
+
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "name": "PHP7.3"
+        }
+
+### Delete [DELETE /tags/{id}]
+
++ Parameters
+
+    + id: 1 (number) - An unique identifier of the tag
+
++ Response 204
+
+# Group Tools
+
+## Tools [/tools]
+
+### Retrieve all [GET /tools{?per_page,page,tag}]
+
++ Parameters
+    + per_page: 10 (number, optional) - The maximum number of results to return.
+    + page: 1 (number, optional) - The number of the page.
+    + tag: php (string, optional) - Search tools by tag name.
+
++ Response 200 (application/json)
+    
+        [
+            {
+                "id": 1,
+                "title": "Sample Tool",
+                "link": "http://localhost:8000",
+                "description": "Lorem ipsum dolor sit atmet.",
+                "tags": [
+                    "php",
+                    "mysql",
+                    "laravel"
                 ]
             }
         ]
 
-### Create a New Question [POST]
+### Retrieve by ID [GET /tools/{id}]
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
++ Parameters
+
+    + id: 1 (number) - An unique identifier of the tool
+
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "title": "Sample Tool",
+            "link": "http://localhost:8000",
+            "description": "Lorem ipsum dolor sit atmet.",
+            "tags": ["php", "mysql", "laravel"]
+        }
+        
+### Create [POST]
 
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
+            "title": "Notion",
+            "description": "All-in-one workspace. One tool for your whole team. Write, plan, and get organized.",
+            "link": "http://notion.so",
+            "tags": [
+                "Laravel",
+                "PHP"
             ]
         }
 
 + Response 201 (application/json)
 
-    + Headers
+        {
+            "id": 5,
+            "title": "Notion",
+            "link": "http:\/\/notion.so",
+            "description": "All-in-one workspace. One tool for your whole team. Write, plan, and get organized.",
+            "tags": [
+                "laravel",
+                "php"
+            ]
+        }
 
-            Location: /questions/2
+### Update [PUT /tools/{id}]
 
-    + Body
++ Parameters
 
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
+    + id: 1 (number) - An unique identifier of the tool
+
++ Request (application/json)
+
+        {
+            "title": "Notion",
+            "description": "All-in-one workspace. One tool for your whole team. Write, plan, and get organized.",
+            "link": "http://notion.so",
+            "tags": [
+                "React",
+                "Next"
+            ]
+        }
+
++ Response 200 (application/json)
+
+        {
+            "id": 5,
+            "title": "Notion",
+            "link": "http:\/\/notion.so",
+            "description": "All-in-one workspace. One tool for your whole team. Write, plan, and get organized.",
+            "tags": [
+                "React",
+                "Next"
+            ]
+        }
+
+### Delete [DELETE /tools/{id}]
+
++ Parameters
+
+    + id: 1 (number) - An unique identifier of the tool
+
++ Response 204
