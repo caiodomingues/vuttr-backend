@@ -1,0 +1,21 @@
+dist: bionic
+language: php
+php:
+  - 7.2
+  - 7.3
+services:
+  - mysql
+cache:
+  directories:
+    - node_modules
+    - vendor
+before_script:
+  - cp .env.example .env
+  - sudo mysql -e 'create database vuttr;'
+  - composer self-update
+  - composer install --prefer-source --no-interaction --dev
+  - php artisan key:generate
+  - php artisan migrate
+  - php artisan passport:install
+script:
+  - vendor/bin/phpunit
