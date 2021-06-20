@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tool extends Model
 {
     protected $fillable = [
-        'name', 'link', 'description'
+        'title', 'link', 'description'
     ];
 
     public function tags()

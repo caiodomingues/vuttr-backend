@@ -16,7 +16,7 @@ class ToolResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'title' => $this->title,
             'link' => $this->link,
             'description' => $this->description,
             'tags' => $this->tags->pluck('name')

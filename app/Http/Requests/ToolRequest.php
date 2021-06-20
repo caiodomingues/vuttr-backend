@@ -24,7 +24,7 @@ class ToolRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
+            'title' => 'required|string',
             'description' => 'required|string',
             'link' => 'required|string',
             'tags' => 'required|array',
