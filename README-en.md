@@ -49,7 +49,9 @@ php artisan serves --port=3000
 
 > The `port` parameter is optional, it was included in the example above because the test requires the API to run on port 3000. The default value is 8000.
 
-## Example
+## Consuming the API
+
+[Documentation at API Blueprint](https://caiodomingues.docs.apiary.io/#)
 
 There is a sample application running on Heroku, you can check it out [here](https://vuttr-domingues.herokuapp.com/). Routes have the prefix `/api`, i.e <https://vuttr-domingues.herokuapp.com/api/route>.
 

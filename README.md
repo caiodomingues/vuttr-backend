@@ -51,7 +51,9 @@ php artisan serve --port=3000
 
 > O parâmetro `port` é opcional, foi incluído no exemplo acima pois o teste requisita que a API rode na porta 3000. O valor padrão é 8000.
 
-## Exemplo
+## Consumindo a API
+
+[Documentação no API Blueprint](https://caiodomingues.docs.apiary.io/#)
 
 Há uma aplicação exemplo rodando no Heroku, você pode conferir por [aqui](https://vuttr-domingues.herokuapp.com/). As rotas possuem o prefixo `/api`, exemplo: <https://vuttr-domingues.herokuapp.com/api/rota>.
 
@@ -62,11 +64,8 @@ Além das rotas para controle de ferramentas, há também as rotas para criaçã
 Para a criação de conta e acesso ao sistema:
 
 ```bash
-POST    /tools          INDEX
-POST    /tools/{id}     SHOW
-POST    /tools          STORE
-PUT     /tools/{id}     UPDATE
-DELETE  /tools/{id}     DESTROY
+POST    /register       REGISTER
+POST    /login     LOGIN
 ```
 
 É possível buscar ferramentas por tag na rota index, utilizando o parâmetro `tag`. O corpo para a criação/edição de uma ferramenta é definido pelo seguinte objeto:
