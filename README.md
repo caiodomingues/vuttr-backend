@@ -64,11 +64,8 @@ Além das rotas para controle de ferramentas, há também as rotas para criaçã
 Para a criação de conta e acesso ao sistema:
 
 ```bash
-POST    /tools          INDEX
-POST    /tools/{id}     SHOW
-POST    /tools          STORE
-PUT     /tools/{id}     UPDATE
-DELETE  /tools/{id}     DESTROY
+POST    /register       REGISTER
+POST    /login     LOGIN
 ```
 
 É possível buscar ferramentas por tag na rota index, utilizando o parâmetro `tag`. O corpo para a criação/edição de uma ferramenta é definido pelo seguinte objeto:
