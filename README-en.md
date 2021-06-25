@@ -82,6 +82,8 @@ It is possible to search tools by tag in the index route, using the `tag` parame
 
 Fields expect a `string` as a value, the `tags` property expects an array of `strings`.
 
+> The auth is not necessary to access other routes, it was made only to show Laravel Passport.
+
 ### Tools
 
 For the tools:

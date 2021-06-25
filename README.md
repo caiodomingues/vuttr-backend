@@ -81,6 +81,8 @@ POST    /login     LOGIN
 
 Os campos esperam uma `string` como valor, a propriedade `tags` espera um array de `strings`.
 
+> A autenticação não é necessária para acessar as demais rotas, foi feita apenas para demonstração do Laravel Passport
+
 ### Tools
 
 Para as ferramentas:
