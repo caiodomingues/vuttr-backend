@@ -22,11 +22,11 @@ use Illuminate\Support\Facades\Route;
 Route::post('register', [AuthController::class, 'register'])->name('auth.register');
 Route::post('login', [AuthController::class, 'login'])->name('auth.login');
 
-Route::group(['middleware' => 'auth:api'], function () {
+// Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
 
     Route::apiResource('tools', ToolController::class);
     Route::apiResource('tags', TagController::class);
-});
+// });

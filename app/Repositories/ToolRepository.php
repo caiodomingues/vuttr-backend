@@ -6,6 +6,7 @@ use App\Models\Tag;
 use App\Models\Tool;
 use App\Repositories\AbstractRepository;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ToolRepository extends AbstractRepository
 {
@@ -49,7 +50,14 @@ class ToolRepository extends AbstractRepository
             }
 
             foreach ($data->tags as $value) {
-                $tag = Tag::where('name', 'like', '%' . strtoupper($value) . '%')->first();
+                $tag = Tag::where('name', '=', strtoupper($value))->first();
+
+                if (!$tag) {
+                    throw new \Exception("Tag not found: " . $value, null);
+                    DB::rollBack();
+                    return;
+                }
+
                 $model->tags()->attach([$tag->id]);
             }
 
